@@ -1,0 +1,27 @@
+{
+	"name": "pozitronik/yii2-selectmodelwidget",
+	"description": "Extended selection widget for ActiveRecord models",
+	"type": "yii2-extension",
+	"keywords": [
+		"yii2",
+		"extension",
+		"widget"
+	],
+	"license": "GPL-3.0",
+	"authors": [
+		{
+			"name": "Pavel Dubrovsky",
+			"email": "antikillerxxl@gmail.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "~2.0.0",
+		"pozitronik/yii2-helpers": "dev-master",
+		"pozitronik/yii2-core-tools": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"pozitronik\\widgets\\": "src"
+		}
+	}
+}
