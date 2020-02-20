@@ -15,7 +15,6 @@ declare(strict_types = 1);
  */
 
 
-use pozitronik\helpers\IconsHelper;
 use kartik\form\ActiveForm;
 use kartik\select2\Select2;
 use yii\db\ActiveRecord;
@@ -30,7 +29,7 @@ use yii\web\View;
 <?= Select2::widget([
 	'addon' => [
 		'append' => [
-			'content' => Html::submitButton(IconsHelper::add(), ['class' => 'btn btn-primary', 'disabled' => 'disabled']),
+			'content' => Html::submitButton("<i class='fa fa-plus'></i>", ['class' => 'btn btn-primary', 'disabled' => 'disabled']),
 			'asButton' => true
 		]
 	],
