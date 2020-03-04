@@ -135,7 +135,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 				]);
 			break;
 			case self::MODE_FORM://fixme: не используем режим формы, он глючит. Пока такой фикс
-				return $this->render('@app/widgets/select_model/views/form', [
+				return $this->render('@vendor/pozitronik/yii2-selectmodelwidget/src/views/form', [
 					'model' => $this->model,
 					'attribute' => $this->attribute,
 					'data' => $this->data,
