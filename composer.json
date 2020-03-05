@@ -18,6 +18,9 @@
 		"pozitronik/yii2-helpers": "*",
 		"pozitronik/yii2-core-tools": "*"
 	},
+	"require-dev": {
+		"yiisoft/yii2": "*"
+	},
 	"autoload": {
 		"psr-4": {
 			"pozitronik\\widgets\\": "src"
