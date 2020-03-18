@@ -18,10 +18,20 @@ function TemplateResultAJAX(item) {
 
 
 /**
- * Форматирование <не помню для чего>
+ * Форматирование при передаче HTML
  * @param markup
  * @returns {*}
  */
 function EscapeMarkup(markup) {
 	return markup;
+}
+
+/**
+ * Расширенный поиск
+ * @param params -- даныне поиска, params.text - набираемый текст
+ * @param data -- объект поиска, data.text - непосредственно текст, data.element - объект списка
+ * @returns {null|*}
+ */
+function MatchCustom(params, data) {
+	return null;
 }
