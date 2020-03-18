@@ -21,7 +21,8 @@ use yii\web\JsExpression;
  * Class SelectModelWidget
  *
  * @property ActiveRecordInterface $selectModel Класс модели, по которой будем выбирать данные
- * @property array $exclude Записи, исключаемые из выборки. Массив id, либо массив элементов, либо ActiveQuery-условие
+ * @property array $exclude Записи, исключаемые из выборки. Массив id, либо массив элементов
+ * @property LCQuery $selectionQuery Переопределение запроса, если нужны какие-то модификации, но не нужно передавать данные в $data
  * @property string $mapAttribute Названия атрибута, который будет отображаться на выбиралку
  * @property string|null $pkName Имя ключевого атрибута модели, если не указано -- подберётся автоматически
  * @property string $postUrl Путь к экшену постинга формы/ajax-постинга.
@@ -44,6 +45,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 
 	public $pkName;//primary key name for selectModel
 	public $selectModel;
+	public $selectionQuery;
 	public $exclude = [];
 	public $mapAttribute = 'name';
 	public $postUrl = '';
@@ -67,7 +69,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 
 		$this->loadedClass = Yii::createObject($this->selectModel);
 		if (!($this->loadedClass instanceof ActiveRecordInterface)) {
-			throw new InvalidConfigException("{$this->selectModel} must be a instance of ActiveRecordExtended");
+			throw new InvalidConfigException("{$this->selectModel} must be a instance of ActiveRecordInterface");
 		}
 		$this->pkName = $this->pkName??$this->loadedClass::pkName();
 		if (null === $this->pkName) {
@@ -96,7 +98,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 
 		} elseif ([] === $this->data) {
 			/** @var LCQuery $selectionQuery */
-			$selectionQuery = $this->loadedClass::find()->active();
+			if (null === $this->selectionQuery) $this->selectionQuery = $this->loadedClass::find()->active();
 			if (is_array($this->exclude)) {
 				if ([] !== $this->exclude) {
 					if ($this->exclude[0] instanceof ActiveRecordInterface) {
@@ -104,11 +106,9 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 					}
 					$selectionQuery->where(['not in', $this->pkName, $this->exclude]);
 				}
-			} elseif ($this->exclude instanceof LCQuery) {
-				$selectionQuery->{$this->exclude};
 			}
 
-			$this->data = ArrayHelper::map($selectionQuery->all(), $this->pkName, $this->mapAttribute);
+			$this->data = ArrayHelper::map($this->selectionQuery->all(), $this->pkName, $this->mapAttribute);
 		}
 
 		if (method_exists($this->loadedClass, 'dataOptions')) {//если у модели есть опции для выбиралки, присунем их к стандартным опциям
