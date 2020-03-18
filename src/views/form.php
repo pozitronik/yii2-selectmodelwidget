@@ -15,11 +15,11 @@ declare(strict_types = 1);
  */
 
 
-use kartik\form\ActiveForm;
 use kartik\select2\Select2;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\web\View;
+use yii\widgets\ActiveForm;
 
 ?>
 
