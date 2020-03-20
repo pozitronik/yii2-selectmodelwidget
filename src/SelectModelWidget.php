@@ -121,7 +121,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 				'language' => 'ru',
 				'templateResult' => (self::DATA_MODE_AJAX === $this->loadingMode)?new JsExpression('function(item) {return '.$this->jsPrefix.'TemplateResultAJAX(item)}'):new JsExpression('function(item) {return '.$this->jsPrefix.'TemplateResult(item)}'),
 				'escapeMarkup' => new JsExpression('function(markup) {return '.$this->jsPrefix.'EscapeMarkup(markup);}'),
-				'matcher' => new JsExpression('function(params, data) {return '.$this->jsPrefix.'MatchCustom(params, data)}')
+//				'matcher' => new JsExpression('function(params, data) {return '.$this->jsPrefix.'MatchCustom(params, data)}')
 			] + $this->ajaxPluginOptions + $this->pluginOptions;
 
 		switch ($this->renderingMode) {
