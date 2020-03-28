@@ -157,7 +157,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 					],
 					'addon' => [
 						'append' => [
-							'content' => Html::button("<i class='fa fa-plus'></i>", ['id' => 'ajax_post_button', 'class' => 'btn btn - primary', 'disabled' => 'disabled', 'onclick' => "ajax_post('$this->postUrl', 'ajax_post_button', {$this->pkName})"]),
+							'content' => Html::button("<i class='fa fa-plus'></i>", ['id' => 'ajax_post_button', 'class' => 'btn btn-primary', 'disabled' => 'disabled', 'onclick' => "ajax_post('$this->postUrl', 'ajax_post_button', {$this->pkName})"]),
 							'asButton' => true
 						]
 					],
