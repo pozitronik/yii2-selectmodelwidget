@@ -56,6 +56,7 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 	public $renderingMode = self::MODE_FIELD;
 	public $multiple = true;
 	public $jsPrefix = '';
+	public $addon = [];
 
 	/**
 	 * Функция инициализации и нормализации свойств виджета
@@ -132,7 +133,8 @@ class SelectModelWidget extends InputWidget implements SelectionWidgetInterface 
 					'attribute' => $this->attribute,
 					'data' => $this->data,
 					'options' => $this->options,
-					'pluginOptions' => $pluginOptions
+					'pluginOptions' => $pluginOptions,
+					'addon' => $this->addon
 				]);
 			break;
 			case self::MODE_FORM://fixme: не используем режим формы, он глючит. Пока такой фикс
