@@ -68,7 +68,7 @@ class SelectModelWidget extends InputWidget {
 	/**
 	 * Функция инициализации и нормализации свойств виджета
 	 */
-	public function init() {
+	public function init():void {
 		parent::init();
 		SelectModelWidgetAssets::register($this->getView());
 		if (null === $this->selectModel) {

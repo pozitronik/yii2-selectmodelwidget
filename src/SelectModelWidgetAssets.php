@@ -13,7 +13,7 @@ class SelectModelWidgetAssets extends AssetBundle {
 	/**
 	 * @inheritdoc
 	 */
-	public function init() {
+	public function init():void {
 		$this->sourcePath = __DIR__.'/assets';
 		$this->css = ['css/select_model.css'];
 		$this->js = [
