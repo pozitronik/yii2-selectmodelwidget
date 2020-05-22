@@ -3,12 +3,11 @@ declare(strict_types = 1);
 
 namespace pozitronik\widgets;
 
-use pozitronik\core\models\lcquery\LCQuery;
+use models\LCQuery;
 use pozitronik\core\traits\ARExtended;
 use Exception;
 use kartik\base\InputWidget;
 use kartik\select2\Select2;
-use pozitronik\core\interfaces\widgets\SelectionWidgetInterface;
 use pozitronik\helpers\ArrayHelper;
 use Throwable;
 use Yii;
@@ -37,7 +36,15 @@ use yii\web\JsExpression;
  * @todo: в случае, если виджет используется для редактирования в режиме DATA_MODE_AJAX, то имеющиеся связи будут отображены, как айдишники. Это нужно поправить.
  * @todo: добавить перечисление допустимых режимов потомка, чтобы виджеты, не поддурживающие аяксовый поиск сообщали об этом
  */
-class SelectModelWidget extends InputWidget implements SelectionWidgetInterface {
+class SelectModelWidget extends InputWidget {
+	public const MODE_FIELD = 0;//рендеримся, как поле внешней формы
+	public const MODE_FORM = 1;//рендеримся, как самостоятельная форма
+	public const MODE_AJAX = 2;//ренедеримся, как есть, с постингом через AJAX
+
+	//todo rename
+	public const DATA_MODE_LOAD = 0;//данные прогружаются сразу
+	public const DATA_MODE_AJAX = 1;//данные прогружаются аяксовым поиском
+
 	//private $data = [];//calculated/evaluated/received data array
 	private $ajaxPluginOptions = [];//calculated select2 ajax parameters
 	/** @var ARExtended|ActiveRecordInterface $loadedClass */
