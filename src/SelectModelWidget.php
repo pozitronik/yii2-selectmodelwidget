@@ -105,15 +105,13 @@ class SelectModelWidget extends InputWidget {
 			];
 
 		} elseif ([] === $this->data) {
-			/** @var LCQuery $selectionQuery */
 			if (null === $this->selectionQuery) $this->selectionQuery = $this->loadedClass::find()->active();
-			if (is_array($this->exclude)) {
-				if ([] !== $this->exclude) {
-					if ($this->exclude[0] instanceof ActiveRecordInterface) {
-						$this->exclude = ArrayHelper::getColumn($this->exclude, $this->pkName);
-					}
-					$selectionQuery->where(['not in', $this->pkName, $this->exclude]);
+			if (is_array($this->exclude) && [] !== $this->exclude) {
+				if ($this->exclude[0] instanceof ActiveRecordInterface) {
+					$this->exclude = ArrayHelper::getColumn($this->exclude, $this->pkName);
 				}
+				/** @var LCQuery $selectionQuery */
+				$selectionQuery->where(['not in', $this->pkName, $this->exclude]);
 			}
 
 			$this->data = ArrayHelper::map($this->selectionQuery->all(), $this->pkName, $this->mapAttribute);
