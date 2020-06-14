@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace pozitronik\widgets;
 
-use models\LCQuery;
+use pozitronik\core\models\LCQuery;
 use pozitronik\core\traits\ARExtended;
 use Exception;
 use kartik\base\InputWidget;
@@ -105,7 +105,7 @@ class SelectModelWidget extends InputWidget {
 			];
 
 		} elseif ([] === $this->data) {
-			if (null === $this->selectionQuery) $this->selectionQuery = $this->loadedClass::find()->active();
+			if (null === $this->selectionQuery) $this->selectionQuery = $this->loadedClass::find();
 			if (is_array($this->exclude) && [] !== $this->exclude) {
 				if ($this->exclude[0] instanceof ActiveRecordInterface) {
 					$this->exclude = ArrayHelper::getColumn($this->exclude, $this->pkName);
