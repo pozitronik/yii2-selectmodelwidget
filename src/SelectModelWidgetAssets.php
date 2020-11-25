@@ -20,7 +20,6 @@ class SelectModelWidgetAssets extends AssetBundle {
 			'js/common.js',
 			'js/select_model.js'
 		];
-		$this->publishOptions = ['forceCopy' => YII_ENV_DEV];
 		parent::init();
 	}
 }
